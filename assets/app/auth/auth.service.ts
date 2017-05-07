@@ -8,12 +8,18 @@ import { ErrorService } from "../errors/error.service";
 
 @Injectable()
 export class AuthService {
+    // for local domain
+    // private domain: string = 'localhost:3000';
+
+    // for heroku domain
+    private domain: string = 'angular2-messager-deployment.herokuapp.com';
+
     constructor(private http: Http, private errorService: ErrorService) {}
 
     signup(user: User) {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post('https://angular2-messager-deployment.herokuapp.com/user', body, {headers: headers})
+        return this.http.post('https://' + this.domain + '/user', body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
@@ -24,7 +30,7 @@ export class AuthService {
     signin(user: User) {
         const body = JSON.stringify(user);
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.post('https://angular2-messager-deployment.herokuapp.com/user/signin', body, {headers: headers})
+        return this.http.post('https://' + this.domain + '/user/signin', body, {headers: headers})
             .map((response: Response) => response.json())
             .catch((error: Response) => {
                 this.errorService.handleError(error.json());
