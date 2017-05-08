@@ -14,8 +14,11 @@ var app = express();
 // for local mongodb
 // mongoose.connect('localhost:27017/node-angular');
 
+var dbuser = 'jackiewang5566';
+var dbpassword = '52mm1314';
+
 // for mongolab
-mongoose.connect('jackiewang5566:52mm1314@ds133251.mlab.com:33251/angular2-messager-deployment');
+mongoose.connect(dbuser + ':' + dbpassword + '@ds133251.mlab.com:33251/angular2-messager-deployment');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
